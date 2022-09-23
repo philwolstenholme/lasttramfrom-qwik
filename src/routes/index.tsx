@@ -17,9 +17,12 @@ export default component$(() => {
       <section class="mt-10 space-y-5">
         <h2 class="text-2xl font-bold">From</h2>
         <ul>
-          {stops.map(([id, { name }]) => (
-            <li key={id}>
-              <Link href={`/${id}`}>{name}</Link>
+          {Object.keys(stops).map((id) => (
+            <li key={stops[id as keyof typeof stops].id}>
+              {/* Tidy this up later https://bobbyhadz.com/blog/typescript-no-index-signature-with-parameter-of-type-string */}
+              <Link href={`/${stops[id as keyof typeof stops].id}`}>
+                {stops[id as keyof typeof stops].name}
+              </Link>
             </li>
           ))}
         </ul>

@@ -5,15 +5,22 @@ import { stops } from "../../data/stops";
 export default component$(() => {
   const location = useLocation();
 
-  const stop = stops.find((element) => element[0] === location.params.from)[1];
-
   return (
     <div>
-      <h1 class="text-4xl font-bold">Trams from {stop.name} to…</h1>
+      <h1 class="text-4xl font-bold">
+        Trams from {stops[location.params.from as keyof typeof stops].name} to…
+      </h1>
       <ul>
-        {stops.map(([id, { name }]) => (
-          <li key={id}>
-            <Link href={`/${location.params.from}/${id}`}>{name}</Link>
+        {Object.keys(stops).map((id) => (
+          <li key={stops[id as keyof typeof stops].id}>
+            {/* Tidy this up later https://bobbyhadz.com/blog/typescript-no-index-signature-with-parameter-of-type-string */}
+            <Link
+              href={`/${location.params.from}/${
+                stops[id as keyof typeof stops].id
+              }`}
+            >
+              {stops[id as keyof typeof stops].name}
+            </Link>
           </li>
         ))}
       </ul>
