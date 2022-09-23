@@ -80,7 +80,7 @@ export default component$(() => {
         onRejected={() => <div>Error</div>}
         onResolved={(data) => (
           <>
-            <h1>
+            <h1 class="text-4xl font-bold">
               Trams from {data.from.slug} to {data.to.slug}
             </h1>
             <p>{data.now.time}</p>

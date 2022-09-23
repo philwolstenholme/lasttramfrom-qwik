@@ -1,5 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { Link } from "@builder.io/qwik-city";
+import { stops } from "../data/stops";
 
 export default component$(() => {
   return (
@@ -11,6 +13,17 @@ export default component$(() => {
         <span class="sr-only">Idea</span>: animate in different stop names in
         the placeholder above
       </p>
+
+      <section class="mt-10 space-y-5">
+        <h2 class="text-2xl font-bold">From</h2>
+        <ul>
+          {stops.map(([id, { name }]) => (
+            <li key={id}>
+              <Link href={`/${id}`}>{name}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section class="mt-10 space-y-5">
         <p>My Qwik todo list:</p>
